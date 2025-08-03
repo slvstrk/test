@@ -1,0 +1,827 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1": {},
+        "/api/v1/activities": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Список возможной деятельности",
+                "operationId": "588b63f874839cfdf8bff9f85afd2bb6",
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Activity"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/activities/{id}": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Информация о виде деятельности",
+                "operationId": "94d5f41644aa6c86e63720e3aa23f214",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ActivitySimple"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/activities/{id}/organizations": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Список организаций, связанных с видом деятельности",
+                "operationId": "244de5ddc28518f4e3e97bbbae895667",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Номер страницы",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID вида деятельности",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Organization"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/buildings": {
+            "get": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Список зданий",
+                "operationId": "662f84537bc7f485afe6518c309ce8e6",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Номер страницы",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Building"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/buildings/{id}": {
+            "get": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Информация о здании",
+                "operationId": "5e687a5c61d47e1f5753581b59857242",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID здания",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Building"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/buildings/{id}/organizations": {
+            "get": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Список организаций в здании",
+                "operationId": "17224169f4d097e172fee0fb34cda8d5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID здания",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Organization"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Список организаций",
+                "operationId": "6db520614939d4cfe78d400515cc6b90",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Номер страницы",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Organization"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/{id}": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Подробная информация об организации",
+                "operationId": "9788aeb522d7775899a55d47d4f44776",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/OrganizationFull"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/search": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Поиск по наименованию",
+                "operationId": "76405de1467f023cdf60df611c043fca",
+                "parameters": [
+                    {
+                        "name": "s",
+                        "in": "query",
+                        "description": "Наименование",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "Group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Organization"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/nearby": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Поиск по точке на карте",
+                "operationId": "2fe49477f65161045db2d3d0287b2292",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "float",
+                            "default": 55.663639
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "float",
+                            "default": 37.826394
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "description": "Радиус в км",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "default": 3
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/OrganizationFull"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/PaginationLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/PaginationMeta"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неавторизован"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Activity": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Молочная продукция"
+                    },
+                    "parent_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "ActivitySimple": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Еда"
+                    }
+                },
+                "type": "object"
+            },
+            "ActivityTree": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Еда"
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Activity"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Address": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 364
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "Беларусь"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "Гомель"
+                    },
+                    "house": {
+                        "type": "string",
+                        "example": "92"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 59.98452
+                    },
+                    "lon": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 30.691369
+                    }
+                },
+                "type": "object"
+            },
+            "Building": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "square": {
+                        "type": "number",
+                        "example": 17000
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    }
+                },
+                "type": "object"
+            },
+            "Organization": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 216
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Roberts PLC"
+                    },
+                    "inn": {
+                        "type": "string",
+                        "example": "7700142906"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "мастерская 61"
+                    },
+                    "activities_tree": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ActivityTree"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Phone": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 553
+                    },
+                    "number": {
+                        "type": "integer",
+                        "example": 79676310431
+                    },
+                    "ext": {
+                        "type": "integer",
+                        "example": 234,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "OrganizationFull": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Rempel Inc"
+                    },
+                    "inn": {
+                        "type": "string",
+                        "example": "7792630934"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": null,
+                        "nullable": true
+                    },
+                    "activities_tree": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ActivityTree"
+                        }
+                    },
+                    "building": {
+                        "$ref": "#/components/schemas/Building"
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Phone"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PaginationMeta": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "from": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "last_page": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "path": {
+                        "type": "string",
+                        "example": "http://localhost:8000/api/v1/resource"
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "to": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": 500
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "example": "http://localhost:8000/api/v1/resource?page=2",
+                                    "nullable": true
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "example": "2"
+                                },
+                                "active": {
+                                    "type": "boolean",
+                                    "example": true
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PaginationLinks": {
+                "properties": {
+                    "first": {
+                        "type": "string",
+                        "example": "http://localhost:8000/api/v1/resource?page=1"
+                    },
+                    "last": {
+                        "type": "string",
+                        "example": "http://localhost:8000/api/v1/resource?page=100"
+                    },
+                    "prev": {
+                        "type": "string",
+                        "example": null,
+                        "nullable": true
+                    },
+                    "next": {
+                        "type": "string",
+                        "example": "http://localhost:8000/api/v1/resource?page=3",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Activity",
+            "description": "Activity"
+        },
+        {
+            "name": "Buildings",
+            "description": "Buildings"
+        },
+        {
+            "name": "Organization",
+            "description": "Organization"
+        }
+    ]
+}
